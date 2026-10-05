@@ -1,0 +1,221 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EduLearn | Grade 11 Mathematics</title>
+  <meta name="description" content="A Grade 11 Mathematics learning website with PK and PM topics, detailed explanations, practice exercises, untimed mode, and progress tracking." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a class="brand" href="#home" aria-label="EduLearn home">
+        <span class="brand-mark">E</span>
+        <span>EduLearn</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#materi" data-view-target="#materi" data-i18n="nav.topics">Topics</a>
+        <a href="#latihan" data-view-target="#latihan" data-i18n="nav.practice">Practice</a>
+        <a href="#progress" data-i18n="nav.progress">Progress</a>
+        <a href="#feedback" data-i18n="nav.feedback">Feedback</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button id="settingsToggle" class="btn btn-ghost settings-toggle" type="button" data-i18n="settings.title">Settings</button>
+        <a class="btn btn-ghost" href="#materi" data-view-target="#materi" data-i18n="nav.topics">Topics</a>
+        <a class="btn btn-primary" href="#latihan" data-view-target="#latihan" data-i18n="nav.startLearning">Start Learning</a>
+      </div>
+
+      <button class="menu-toggle" aria-label="Toggle navigation">☰</button>
+    </div>
+  </header>
+
+  <main id="home">
+    <section class="hero landing-hero">
+      <div class="container hero-grid">
+        <div class="hero-copy landing-copy">
+          <p class="landing-eyebrow" data-i18n="landing.eyebrow">Latihan PK UTBK</p>
+          <h1 data-i18n="landing.title">Latihan PK, dengan pembahasan setelah kamu mencoba.</h1>
+          <p data-i18n="landing.description">Pilih jawaban dulu. Setelah itu, lihat langkah penyelesaian dan akurasi per topik untuk menentukan latihan berikutnya.</p>
+
+          <div class="cta-group">
+            <a class="btn btn-secondary cta-link active" href="#materi" data-view-target="#materi" data-i18n="cta.viewTopics">View Topics</a>
+            <a class="btn btn-primary cta-link" href="#latihan" data-view-target="#latihan" data-i18n="cta.startPractice">Start Practice</a>
+          </div>
+        </div>
+
+        <article class="landing-card" aria-labelledby="landing-question-title">
+          <div class="landing-card-topline">
+            <span class="landing-badge" data-i18n="landing.exampleLabel">Contoh soal PK</span>
+            <span class="landing-card-meta" data-i18n="landing.exampleNumber">Contoh · 01</span>
+          </div>
+          <h2 id="landing-question-title" data-i18n="landing.question">Akar-akar dari x² - 5x + 6 = 0 adalah ...</h2>
+          <fieldset class="landing-choice-list" id="landingPredictionChoices">
+            <legend data-i18n="landing.chooseAnswer">Pilih jawabanmu</legend>
+            <label class="landing-choice"><input type="radio" name="landingPrediction" value="2,3" /><span>x = 2 dan x = 3</span></label>
+            <label class="landing-choice"><input type="radio" name="landingPrediction" value="-2,-3" /><span>x = -2 dan x = -3</span></label>
+            <label class="landing-choice"><input type="radio" name="landingPrediction" value="-1,6" /><span>x = -1 dan x = 6</span></label>
+          </fieldset>
+          <button class="btn btn-primary landing-check-button" id="checkLandingAnswer" type="button" data-i18n="landing.checkAnswer">Periksa jawaban</button>
+          <p class="landing-feedback" id="landingFeedback" aria-live="polite" data-i18n="landing.feedbackPrompt">Pilih jawaban dulu, lalu kita cek langkahnya.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="materi">
+      <div class="container">
+        <div class="section-header center">
+          <p data-i18n="topics.label">Available Topics</p>
+          <h2 data-i18n="topics.title">Select your study material group</h2>
+        </div>
+
+        <div class="subject-switch">
+          <button class="subject-tab active" data-subject="PK" type="button">PK</button>
+          <button class="subject-tab" data-subject="PM" type="button">PM</button>
+        </div>
+
+        <div class="topic-layout">
+          <div class="topic-list-panel">
+            <div id="topicGrid" class="topic-grid"></div>
+          </div>
+
+          <aside id="topicDetail" class="topic-detail" aria-live="polite"></aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="latihan" hidden>
+      <div class="container">
+        <div class="section-header center">
+          <p data-i18n="practice.label">Practice Questions</p>
+          <h2 data-i18n="practice.title">Adjust the practice mode to match your needs</h2>
+        </div>
+
+        <div class="quiz-box official-exam">
+          <div class="quiz-controls">
+            <div class="field-group compact">
+              <label for="topicSelect" data-i18n="practice.subtest">Subtest</label>
+              <select id="topicSelect"></select>
+            </div>
+
+            <div class="field-group compact">
+              <label data-i18n="practice.difficulty">Difficulty</label>
+              <div class="difficulty-group">
+                <button class="difficulty-btn active" data-difficulty="mudah" type="button" data-i18n="practice.easy">Easy</button>
+                <button class="difficulty-btn" data-difficulty="sedang" type="button" data-i18n="practice.medium">Medium</button>
+                <button class="difficulty-btn" data-difficulty="susah" type="button" data-i18n="practice.hard">Hard</button>
+              </div>
+            </div>
+
+            <div class="field-group compact">
+              <label data-i18n="practice.time">Time</label>
+              <div class="timer-adjust">
+                <button id="decreaseTime" type="button">−</button>
+                <input id="timerMinutes" type="number" min="1" max="60" value="10" />
+                <button id="increaseTime" type="button">+</button>
+              </div>
+            </div>
+
+            <div class="field-group compact">
+              <label for="questionCount" data-i18n="practice.questionCount">Number of questions</label>
+              <input id="questionCount" type="number" min="5" max="50" value="10" />
+            </div>
+
+            <label class="toggle-row">
+              <input id="untimedMode" type="checkbox" />
+              <span data-i18n="practice.untimed">Untimed mode</span>
+            </label>
+          </div>
+
+          <div class="quiz-actions">
+            <button id="startSubtest" class="btn btn-primary" type="button" data-i18n="practice.openSubtest">Start Subtest</button>
+            <button id="startExam" class="btn btn-secondary" type="button" data-i18n="practice.fullReview">Full Review Exam</button>
+          </div>
+
+          <div id="quizArea" class="quiz-area hidden"></div>
+          <div id="resultsArea" class="results-area hidden"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section progress-section" id="progress">
+      <div class="container">
+        <div class="section-header center">
+        <p data-i18n="progress.label">Progress Chart</p>
+        <h2 data-i18n="progress.title">Track efficiency and results for each subtest</h2>
+
+        <div id="progressOverview" class="progress-overview"></div>
+      </div>
+    </section>
+  </main>
+
+  <aside id="settingsPanel" class="settings-panel hidden" aria-label="Website settings">
+    <div class="settings-header">
+      <h3 data-i18n="settings.title">Settings</h3>
+      <button id="closeSettings" class="settings-close" type="button" aria-label="Close settings">×</button>
+    </div>
+
+    <div class="settings-group">
+      <label for="languageSelect" data-i18n="settings.languageLabel">Language</label>
+      <select id="languageSelect">
+        <option value="en">English</option>
+        <option value="id">Indonesia</option>
+      </select>
+    </div>
+
+    <div class="settings-group">
+      <span data-i18n="settings.themeLabel">Theme</span>
+      <div class="theme-switch">
+        <button class="theme-btn active" data-theme="light" type="button" data-i18n="settings.lightTheme">Light</button>
+        <button class="theme-btn" data-theme="dark" type="button" data-i18n="settings.darkTheme">Dark</button>
+      </div>
+    </div>
+  </aside>
+
+  <section id="feedback" class="section feedback-section">
+    <div class="container">
+      <div class="section-header center">
+        <p data-i18n="feedback.label">Feedback &amp; Suggestions</p>
+        <h2 data-i18n="feedback.title">Share your feedback to improve the app</h2>
+      </div>
+
+      <div class="feedback-card">
+        <form id="feedbackForm" class="feedback-form">
+          <div class="field-group">
+            <label for="feedbackType" data-i18n="feedback.typeLabel">Feedback type</label>
+            <select id="feedbackType" name="type">
+              <option value="saran" data-i18n="feedback.optionSuggestion">Suggestion</option>
+              <option value="kritik" data-i18n="feedback.optionCriticism">Criticism</option>
+              <option value="request" data-i18n="feedback.optionRequest">Feature request</option>
+            </select>
+          </div>
+
+          <div class="field-group">
+            <label for="feedbackMessage" data-i18n="feedback.messageLabel">Message</label>
+            <textarea id="feedbackMessage" name="message" rows="5" placeholder="Write your suggestion, criticism, or requested feature..." data-i18n-placeholder="feedback.placeholder" required></textarea>
+          </div>
+
+          <button class="btn btn-primary" type="submit" data-i18n="feedback.sendButton">Send Feedback</button>
+        </form>
+        <p id="feedbackStatus" class="feedback-status" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-inner">
+      <div>© <span id="current-year">2026</span> EduLearn. All rights reserved.</div>
+      <div class="footer-links">
+        <a href="#materi" data-view-target="#materi" data-i18n="nav.topics">Topics</a>
+        <a href="#latihan" data-view-target="#latihan" data-i18n="nav.practice">Practice</a>
+        <a href="#progress" data-i18n="nav.progress">Progress</a>
+        <a href="#feedback" data-i18n="nav.feedback">Feedback</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

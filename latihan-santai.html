@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f3f4ec" />
+  <meta name="description" content="Coba lima soal PK dengan tebakan, petunjuk, dan pembahasan langsung." />
+  <title>Latihan Santai PK | EduLearn</title>
+  <link rel="stylesheet" href="latihan-santai.css" />
+  <script src="latihan-santai.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Lewati ke latihan</a>
+  <header class="practice-header">
+    <a class="brand" href="index.html" aria-label="EduLearn, kembali ke halaman utama">
+      <span class="brand-mark">E</span>
+      <span>EduLearn <span class="brand-note">/ latihan santai</span></span>
+    </a>
+    <button class="theme-toggle" id="themeToggle" type="button" aria-pressed="false">Mode gelap</button>
+  </header>
+
+  <main class="practice-main" id="main">
+    <section class="intro" aria-labelledby="pageTitle">
+      <p class="eyebrow"><span class="eyebrow-mark" aria-hidden="true"></span> Pengetahuan Kuantitatif</p>
+      <h1 id="pageTitle">Coba dulu. Kita bahas bareng.</h1>
+      <p>Lima soal, satu per satu. Pilih tebakanmu sebelum pembahasan dibuka; salah pun tidak apa-apa, kita lihat langkahnya bersama.</p>
+    </section>
+
+    <section class="practice-shell" aria-label="Latihan lima soal">
+      <div class="practice-topline">
+        <div class="question-progress" aria-live="polite">
+          <span class="progress-label" id="questionCounter">Soal 1 dari 5</span>
+          <progress id="questionProgress" max="5" value="1">1 dari 5</progress>
+        </div>
+        <span class="session-badge">Bebas mencoba</span>
+      </div>
+
+      <article class="question-card" aria-labelledby="questionPrompt">
+        <div class="question-meta">
+          <span class="topic-badge" id="topicBadge">Persamaan kuadrat</span>
+          <span class="recall-badge" id="recallBadge" hidden>Ingat lagi</span>
+        </div>
+        <h2 id="questionPrompt" tabindex="-1"></h2>
+        <p class="question-context" id="questionContext"></p>
+
+        <section class="prediction-box" aria-labelledby="predictionTitle">
+          <div class="prediction-heading">
+            <span class="prediction-icon" aria-hidden="true">?</span>
+            <div>
+              <p class="component-label">PredictionBox</p>
+              <h3 id="predictionTitle">Apa tebakanmu?</h3>
+            </div>
+          </div>
+          <p class="prediction-prompt">Pilih jawaban yang menurutmu paling masuk akal. Kamu bisa ubah pilihan sebelum dikunci.</p>
+          <div class="answer-options" id="answerOptions" role="group" aria-label="Pilihan tebakan"></div>
+          <div class="guess-actions">
+            <button class="button button-primary" id="lockGuess" type="button" disabled>Kunci tebakan</button>
+            <p class="guess-hint" id="guessHint" aria-live="polite">Belum yakin? Pilih dulu yang paling mendekati.</p>
+          </div>
+        </section>
+
+        <section class="feedback-box" id="feedbackBox" aria-live="polite" hidden>
+          <p class="feedback-status" id="feedbackStatus"></p>
+          <p class="feedback-answer"><span>Jawaban</span><strong id="correctAnswer"></strong></p>
+          <p class="feedback-explanation" id="feedbackExplanation"></p>
+          <p class="feedback-nudge" id="feedbackNudge"></p>
+        </section>
+
+        <div class="question-actions">
+          <button class="button button-outline" id="changeGuess" type="button" hidden>Ubah tebakan</button>
+          <button class="button button-primary" id="nextQuestion" type="button" hidden>Lanjut soal</button>
+        </div>
+      </article>
+    </section>
+
+    <section class="completion-panel" id="completionPanel" aria-labelledby="completionTitle" hidden>
+      <p class="eyebrow">Selesai satu putaran</p>
+      <h2 id="completionTitle">Lima soal sudah dicoba.</h2>
+      <p>Kamu bisa mengulangnya dan membandingkan cara berpikirmu. Tidak ada nilai yang perlu dikejar di sini.</p>
+      <button class="button button-primary" id="restartPractice" type="button">Coba lagi</button>
+    </section>
+  </main>
+</body>
+</html>

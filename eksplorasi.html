@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f3f4ec" />
+  <meta name="description" content="Ubah faktor persamaan kuadrat dan amati grafik, diagram, serta akar-akarnya." />
+  <title>Eksplorasi PK | EduLearn</title>
+  <link rel="stylesheet" href="eksplorasi.css" />
+  <script src="eksplorasi.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Lewati ke konten</a>
+  <header class="explore-header">
+    <a class="brand" href="index.html" aria-label="EduLearn, kembali ke halaman utama">
+      <span class="brand-mark">E</span>
+      <span>EduLearn <span class="brand-section">/ eksplorasi PK</span></span>
+    </a>
+    <div class="header-actions">
+      <span class="mode-badge"><span aria-hidden="true"></span> Bebas mencoba</span>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-pressed="false">Mode gelap</button>
+    </div>
+  </header>
+
+  <main id="main" class="explore-main">
+    <section class="explore-intro" aria-labelledby="pageTitle">
+      <p class="eyebrow">Ruang eksplorasi · Aljabar</p>
+      <h1 id="pageTitle">Ubah faktornya. Lihat apa yang ikut berubah.</h1>
+      <p>Mulai dari (x + m)(x + n) = 0. Geser nilai m dan n; persamaan, grafik, diagram perkalian, dan letak akar berubah bersamaan. Coba beberapa kombinasi dan cari polanya.</p>
+    </section>
+
+    <section class="explore-layout" aria-label="Eksplorasi persamaan kuadrat">
+      <aside class="parameter-panel" aria-labelledby="parameterTitle">
+        <div class="panel-heading">
+          <p class="eyebrow">01 / Coba parameter</p>
+          <h2 id="parameterTitle">Mulai dari faktor</h2>
+          <p>Geser angkanya. Semua tampilan di samping ikut berubah.</p>
+        </div>
+
+        <div class="factor-equation" aria-live="polite">
+          <span id="factorM">(x + 2)</span>
+          <span id="factorN">(x − 3)</span>
+          <span>= 0</span>
+        </div>
+
+        <div class="parameter-control">
+          <div class="control-heading">
+            <label for="mRange">Nilai m</label>
+            <output id="mOutput" for="mRange">2</output>
+          </div>
+          <input id="mRange" type="range" min="-5" max="5" step="1" value="2" />
+          <div class="range-ends" aria-hidden="true"><span>−5</span><span>5</span></div>
+        </div>
+
+        <div class="parameter-control">
+          <div class="control-heading">
+            <label for="nRange">Nilai n</label>
+            <output id="nOutput" for="nRange">−3</output>
+          </div>
+          <input id="nRange" type="range" min="-5" max="5" step="1" value="-3" />
+          <div class="range-ends" aria-hidden="true"><span>−5</span><span>5</span></div>
+        </div>
+
+        <div class="expanded-form" aria-live="polite">
+          <span>Setelah dikalikan</span>
+          <strong id="expandedEquation">x² − x − 6 = 0</strong>
+        </div>
+
+        <div class="root-summary" aria-live="polite">
+          <div><span>Jumlah akar</span><strong id="rootSum">1</strong></div>
+          <div><span>Hasil kali akar</span><strong id="rootProduct">−6</strong></div>
+        </div>
+
+        <button class="reset-button" id="resetParameters" type="button"><span aria-hidden="true">↺</span> Kembalikan contoh awal</button>
+      </aside>
+
+      <div class="visual-workspace">
+        <div class="workspace-heading">
+          <div>
+            <p class="eyebrow">02 / Lihat dari sisi lain</p>
+            <h2>Pilih cara mengamatinya</h2>
+          </div>
+          <p class="workspace-hint">Ganti tampilan kapan saja.</p>
+        </div>
+
+        <div class="view-tabs" role="tablist" aria-label="Tampilan eksplorasi">
+          <button class="view-tab" id="tabGraph" type="button" role="tab" aria-selected="true" aria-controls="panelGraph" data-view="graph">Grafik</button>
+          <button class="view-tab" id="tabDiagram" type="button" role="tab" aria-selected="false" aria-controls="panelDiagram" data-view="diagram" tabindex="-1">Diagram perkalian</button>
+          <button class="view-tab" id="tabNumberLine" type="button" role="tab" aria-selected="false" aria-controls="panelNumberLine" data-view="numberLine" tabindex="-1">Garis bilangan</button>
+        </div>
+
+        <section class="visual-panel" id="panelGraph" role="tabpanel" aria-labelledby="tabGraph">
+          <div class="visual-title-row">
+            <div><h3>Grafik fungsi kuadrat</h3><p>Titik potong sumbu x menunjukkan akar persamaan.</p></div>
+            <span class="visual-index">A</span>
+          </div>
+          <svg id="graphSvg" class="math-visual graph-visual" viewBox="0 0 560 330" role="img" aria-labelledby="graphTitle graphDescription">
+            <title id="graphTitle">Grafik fungsi kuadrat</title>
+            <desc id="graphDescription">Grafik parabola dan titik potong sumbu x.</desc>
+          </svg>
+          <div class="visual-caption"><span class="legend-dot root-dot"></span><span id="graphLegend">Akar: x = −2 dan x = 3</span><span class="legend-line"></span><span>f(x)</span></div>
+        </section>
+
+        <section class="visual-panel" id="panelDiagram" role="tabpanel" aria-labelledby="tabDiagram" hidden>
+          <div class="visual-title-row">
+            <div><h3>Diagram perkalian</h3><p>Setiap kotak adalah hasil perkalian sisi baris dan kolom.</p></div>
+            <span class="visual-index">B</span>
+          </div>
+          <div class="algebra-diagram-wrap">
+            <table class="algebra-diagram" aria-label="Diagram perkalian untuk dua faktor">
+              <thead><tr><th></th><th id="columnX">x</th><th id="columnN">−3</th></tr></thead>
+              <tbody>
+                <tr><th id="rowX">x</th><td id="cellXX">x²</td><td id="cellXN">−3x</td></tr>
+                <tr><th id="rowM">2</th><td id="cellMX">2x</td><td id="cellMN">−6</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="diagram-note" id="diagramNote">Jumlahkan isi kotak: x² − x − 6.</p>
+          <div class="prompt-strip"><span class="prompt-mark" aria-hidden="true">?</span><p>Kalau satu faktor berubah tanda, bagian mana dari diagram yang ikut berubah?</p></div>
+        </section>
+
+        <section class="visual-panel" id="panelNumberLine" role="tabpanel" aria-labelledby="tabNumberLine" hidden>
+          <div class="visual-title-row">
+            <div><h3>Akar di garis bilangan</h3><p>Setiap faktor menjadi nol di satu nilai x.</p></div>
+            <span class="visual-index">C</span>
+          </div>
+          <svg id="numberLineSvg" class="math-visual number-line-visual" viewBox="0 0 560 190" role="img" aria-labelledby="numberLineTitle numberLineDescription">
+            <title id="numberLineTitle">Akar persamaan pada garis bilangan</title>
+            <desc id="numberLineDescription">Garis bilangan dari minus lima sampai lima dengan dua akar.</desc>
+          </svg>
+          <p class="number-line-note" id="numberLineNote">Akar persamaan: x = −2 dan x = 3.</p>
+          <div class="prompt-strip"><span class="prompt-mark" aria-hidden="true">?</span><p>Bandingkan posisi akar dengan angka di dalam faktor. Apa hubungannya?</p></div>
+        </section>
+
+        <p class="try-note"><strong>Boleh coba-coba.</strong> Ubah angkanya, bandingkan bentuknya, lalu cari pola yang kamu lihat.</p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

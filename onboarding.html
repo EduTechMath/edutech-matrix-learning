@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f3f4ec" />
+  <title>Rencana Belajar | EduLearn</title>
+  <link rel="stylesheet" href="auth.css" />
+  <script src="auth.js" defer></script>
+</head>
+<body data-page="onboarding">
+  <a class="skip-link" href="#main">Lewati ke konten</a>
+  <header class="auth-header">
+    <a class="brand" href="index.html" aria-label="EduLearn, halaman utama"><span class="brand-mark">E</span><span>EduLearn</span></a>
+    <button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false">Mode gelap</button>
+  </header>
+
+  <main class="onboarding-layout" id="main">
+    <div class="onboarding-shell" id="onboardingFlow">
+      <div class="onboarding-topline">
+        <a class="quiet-link" href="daftar.html">Kembali ke daftar</a>
+        <span class="step-count" id="stepCount" aria-live="polite">Langkah 1 dari 3</span>
+      </div>
+      <div class="step-track" aria-hidden="true"><span id="stepProgress"></span></div>
+
+      <div class="onboarding-conversation" id="onboardingSteps">
+        <section class="conversation-step" data-step-panel="1" aria-labelledby="onboarding-title">
+          <p class="eyebrow">Biar latihannya terasa milikmu</p>
+          <h1 id="onboarding-title">Kamu sedang mengincar target skor berapa?</h1>
+          <p class="conversation-prompt">Belum yakin juga tidak apa-apa. Ini titik awal, bukan janji hasil.</p>
+          <div class="conversation-choices" role="group" aria-label="Pilih target skor">
+            <button class="conversation-choice" type="button" data-answer-group="score" data-answer="Di bawah 600" aria-pressed="false"><strong>Di bawah 600</strong><span>Bangun dasar dan cari pola soal.</span></button>
+            <button class="conversation-choice" type="button" data-answer-group="score" data-answer="600–699" aria-pressed="false"><strong>600–699</strong><span>Latihan terarah, satu topik per sesi.</span></button>
+            <button class="conversation-choice" type="button" data-answer-group="score" data-answer="700 atau lebih" aria-pressed="false"><strong>700 atau lebih</strong><span>Asah strategi dan ketelitian.</span></button>
+            <button class="conversation-choice choice-quiet" type="button" data-answer-group="score" data-answer="Belum menentukan" aria-pressed="false"><strong>Belum menentukan</strong><span>Kita bisa mulai dari kemampuan saat ini.</span></button>
+          </div>
+        </section>
+
+        <section class="conversation-step" data-step-panel="2" aria-labelledby="weak-title" hidden>
+          <p class="eyebrow">Langkah 2 / 3</p>
+          <h2 id="weak-title" tabindex="-1">Topik PK mana yang paling ingin kamu kuatkan?</h2>
+          <p class="conversation-prompt">Pilih yang sering bikin berhenti lama. Kita mulai dari sana.</p>
+          <div class="conversation-choices topic-choices" role="group" aria-label="Pilih topik yang ingin diperkuat">
+            <button class="conversation-choice" type="button" data-answer-group="topic" data-answer="Aljabar dan bilangan" aria-pressed="false"><strong>Aljabar dan bilangan</strong><span>Operasi, bentuk aljabar, dan pola bilangan.</span></button>
+            <button class="conversation-choice" type="button" data-answer-group="topic" data-answer="Fungsi dan persamaan" aria-pressed="false"><strong>Fungsi dan persamaan</strong><span>Relasi, fungsi, persamaan, dan akar.</span></button>
+            <button class="conversation-choice" type="button" data-answer-group="topic" data-answer="Geometri dan pengukuran" aria-pressed="false"><strong>Geometri dan pengukuran</strong><span>Bentuk, ukuran, dan hubungan ruang.</span></button>
+            <button class="conversation-choice" type="button" data-answer-group="topic" data-answer="Statistika dan peluang" aria-pressed="false"><strong>Statistika dan peluang</strong><span>Membaca data dan memperkirakan kemungkinan.</span></button>
+          </div>
+        </section>
+
+        <section class="conversation-step" data-step-panel="3" aria-labelledby="schedule-title" hidden>
+          <p class="eyebrow">Langkah 3 / 3</p>
+          <h2 id="schedule-title" tabindex="-1">Kapan waktu latihan yang realistis buatmu?</h2>
+          <p class="conversation-prompt">Pilih ritme yang kira-kira bisa dijaga. Nanti bisa kamu sesuaikan.</p>
+          <div class="conversation-choices schedule-choices" role="group" aria-label="Pilih jadwal latihan">
+            <button class="conversation-choice" type="button" data-answer-group="schedule" data-answer="Senin, Rabu, Jumat · 19.00" aria-pressed="false"><strong>Senin, Rabu, Jumat</strong><span>19.00 · sekitar 20 menit</span></button>
+            <button class="conversation-choice" type="button" data-answer-group="schedule" data-answer="Selasa, Kamis, Sabtu · 19.00" aria-pressed="false"><strong>Selasa, Kamis, Sabtu</strong><span>19.00 · sekitar 20 menit</span></button>
+            <button class="conversation-choice" type="button" data-answer-group="schedule" data-answer="Sabtu dan Minggu · 10.00" aria-pressed="false"><strong>Sabtu dan Minggu</strong><span>10.00 · sekitar 30 menit</span></button>
+          </div>
+        </section>
+      </div>
+
+      <section class="plan-summary" id="planSummary" aria-labelledby="summary-title" hidden>
+        <p class="eyebrow">Rencana awalmu</p>
+        <h2 id="summary-title">Oke, kita punya titik mulai.</h2>
+        <p class="summary-intro">Ini bukan patokan tetap. Kamu bisa mengubahnya saat kebutuhanmu berubah.</p>
+        <dl class="summary-list">
+          <div><dt>Target skor</dt><dd id="summaryScore"></dd></div>
+          <div><dt>Topik yang dipilih</dt><dd id="summaryTopic"></dd></div>
+          <div><dt>Waktu latihan</dt><dd id="summarySchedule"></dd></div>
+        </dl>
+        <p class="preview-note">Pilihan ini hanya tersimpan selama pratinjau dibuka. Belum ditautkan ke akun.</p>
+        <a class="button button-primary summary-cta" href="index.html#latihan">Lihat latihan</a>
+        <button class="text-button" type="button" id="editPlan">Ubah jawaban</button>
+      </section>
+
+      <div class="onboarding-actions" id="onboardingActions">
+        <button class="button button-outline" type="button" id="previousStep" disabled>Kembali</button>
+        <button class="button button-primary" type="button" id="nextStep" disabled>Lanjut</button>
+      </div>
+      <p class="onboarding-status" id="onboardingStatus" aria-live="polite"></p>
+    </div>
+  </main>
+</body>
+</html>

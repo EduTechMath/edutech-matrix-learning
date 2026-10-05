@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f3f4ec" />
+  <meta name="description" content="Rapor belajar dari riwayat try out dan latihan yang tersimpan di perangkat." />
+  <title>Rapor Belajar | EduLearn</title>
+  <link rel="stylesheet" href="rapor.css" />
+  <script src="rapor.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Lewati ke rapor</a>
+  <header class="report-header">
+    <a class="brand" href="index.html" aria-label="EduLearn, kembali ke beranda">
+      <span class="brand-mark">E</span>
+      <span>EduLearn <span class="brand-note">/ rapor belajar</span></span>
+    </a>
+    <span class="privacy-note"><span aria-hidden="true"></span> Data dari perangkat ini</span>
+  </header>
+
+  <main class="report-main" id="main">
+    <section class="report-intro" aria-labelledby="reportTitle">
+      <p class="eyebrow">Perjalanan belajarmu</p>
+      <h1 id="reportTitle">Lihat prosesnya, bukan cuma hasil akhirnya.</h1>
+      <p>Rapor ini merangkum try out yang tersimpan di browser ini: perubahan akurasi, topik yang masih menantang, dan ritme latihanmu.</p>
+    </section>
+
+    <section class="summary-strip" aria-label="Ringkasan aktivitas">
+      <div class="summary-item">
+        <span class="summary-label">Try out tercatat</span>
+        <strong id="examCount">—</strong>
+        <span class="summary-detail">sesi lengkap</span>
+      </div>
+      <div class="summary-item">
+        <span class="summary-label">Topik pernah dilatih</span>
+        <strong id="topicCount">—</strong>
+        <span class="summary-detail">dari progres yang tersimpan</span>
+      </div>
+      <div class="summary-item streak-metric">
+        <span class="summary-label">Streak harian</span>
+        <strong id="currentStreak">0 hari</strong>
+        <span class="summary-detail" id="streakStatus">Berdasarkan try out lengkap</span>
+      </div>
+      <div class="summary-item repeat-metric">
+        <span class="summary-label">Soal diulang dengan benar</span>
+        <strong id="repeatCorrectCount">Belum tercatat</strong>
+        <span class="summary-detail">pelacakan pengulangan belum tersedia</span>
+      </div>
+    </section>
+
+    <section class="report-section badges-section" aria-labelledby="badgesTitle">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Apresiasi proses</p>
+          <h2 id="badgesTitle">Badge belajar</h2>
+        </div>
+        <p class="section-aside">Badge sederhana dari kebiasaan yang tercatat, bukan dari prediksi nilai.</p>
+      </div>
+      <div class="badge-list" id="badgeList"></div>
+    </section>
+
+    <section class="report-section share-section" aria-labelledby="shareTitle">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Bagikan prosesmu</p>
+          <h2 id="shareTitle">Template Instagram Story</h2>
+        </div>
+        <p class="section-aside">Gambar hanya memuat ringkasan sesi terakhir dan streak, tanpa nama atau email.</p>
+      </div>
+      <div class="share-layout">
+        <div class="story-template" id="storyTemplate" aria-label="Pratinjau template hasil try out untuk Instagram Story">
+          <span class="story-brand">EDULEARN <span>/ CATATAN BELAJAR</span></span>
+          <span class="story-overline">SATU LANGKAH LAGI</span>
+          <strong class="story-accuracy" id="storyAccuracy">—%</strong>
+          <span class="story-caption">akurasi sesi terakhir</span>
+          <span class="story-divider"></span>
+          <span class="story-date" id="storyDate">Selesaikan try out untuk membuat kartu hasil.</span>
+          <span class="story-streak"><span aria-hidden="true">✳</span> <span id="storyStreak">Streak 0 hari</span></span>
+          <span class="story-footer">Proses belajar, satu sesi setiap kali.</span>
+        </div>
+        <div class="share-actions">
+          <p id="shareStatus" aria-live="polite">Setelah try out lengkap tercatat, kartu hasil siap dibagikan.</p>
+          <button class="share-button" id="shareStory" type="button" disabled>Bagikan ke Instagram Story</button>
+          <span class="share-hint">Jika berbagi file tidak didukung browser, gambar akan diunduh agar bisa dipilih dari Instagram.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="report-section progress-section" aria-labelledby="progressTitle">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">01 / Dari waktu ke waktu</p>
+          <h2 id="progressTitle">Akurasi try out</h2>
+        </div>
+        <div class="period-switch" role="group" aria-label="Rentang waktu grafik">
+          <button type="button" data-period="30">30 hari</button>
+          <button type="button" data-period="90">90 hari</button>
+          <button type="button" data-period="all" aria-pressed="true">Semua</button>
+        </div>
+      </div>
+      <div class="chart-frame" id="progressChartFrame">
+        <svg id="progressChart" viewBox="0 0 760 300" role="img" aria-labelledby="chartTitle chartDescription"></svg>
+        <p class="empty-state" id="chartEmpty" hidden>Belum ada riwayat try out untuk rentang ini. Setelah sesi try out selesai, perubahannya akan muncul di sini.</p>
+      </div>
+      <p class="chart-caption"><span class="chart-legend" aria-hidden="true"></span>Akurasi tiap try out lengkap. Garis menghubungkan sesi berdasarkan tanggal.</p>
+    </section>
+
+    <section class="report-section weakness-section" aria-labelledby="weaknessTitle">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">02 / Topik yang perlu perhatian</p>
+          <h2 id="weaknessTitle">Bagian mana yang masih menantang?</h2>
+        </div>
+        <p class="section-aside">Diurutkan dari akurasi terendah. Angka berasal dari jawaban latihan per topik yang tersimpan.</p>
+      </div>
+      <div class="weakness-list" id="weaknessList"></div>
+      <p class="empty-state" id="weaknessEmpty" hidden>Belum ada data per topik. Coba beberapa latihan agar rapor bisa menunjukkan bagian yang ingin kamu kuatkan.</p>
+    </section>
+
+    <section class="report-section rhythm-section" aria-labelledby="rhythmTitle">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">03 / Ritme latihan</p>
+          <h2 id="rhythmTitle">Kapan kamu sempat latihan?</h2>
+        </div>
+        <p class="section-aside">Kalender ini menghitung tanggal try out lengkap yang tercatat, bukan semua aktivitas belajar.</p>
+      </div>
+      <div class="rhythm-summary" id="rhythmSummary" aria-live="polite"></div>
+      <div class="activity-calendar" id="activityCalendar" role="group" aria-label="Aktivitas try out harian selama delapan minggu terakhir"></div>
+      <div class="calendar-legend" role="group" aria-label="Jumlah try out">
+        <span>Belum ada</span><i class="activity-cell level-0" aria-label="0 try out"></i><i class="activity-cell level-1" aria-label="1 try out"></i><i class="activity-cell level-2" aria-label="2 try out"></i><i class="activity-cell level-3" aria-label="3 atau lebih try out"></i><span>Lebih sering</span>
+      </div>
+      <p class="empty-state" id="rhythmEmpty" hidden>Belum ada tanggal try out yang tersimpan untuk melihat pola rutin dan jedanya.</p>
+    </section>
+
+    <section class="report-section leaderboard-section" aria-labelledby="leaderboardTitle">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Opsional</p>
+          <h2 id="leaderboardTitle">Leaderboard</h2>
+        </div>
+        <p class="section-aside">Kamu bisa memilih untuk tidak ikut. Peringkat bersama belum tersedia pada versi lokal ini.</p>
+      </div>
+      <label class="leaderboard-optin">
+        <input id="leaderboardOptIn" type="checkbox" />
+        <span>Aktifkan tampilan leaderboard jika layanan bersama tersedia</span>
+      </label>
+      <p class="leaderboard-status" id="leaderboardStatus" aria-live="polite"></p>
+    </section>
+
+    <aside class="report-note">
+      <strong>Catatan tentang data</strong>
+      <p>Rapor ini hanya membaca data lokal dari browser yang sedang dipakai. Data pengulangan soal yang dijawab benar belum dikumpulkan, jadi metrik itu sengaja tidak diperkirakan.</p>
+    </aside>
+  </main>
+</body>
+</html>
